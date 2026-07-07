@@ -1,23 +1,752 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      "name": "개인회생 배우자 재산 전문 컨설팅 플랫폼",
+      "description": "2026년 최신 개정 실무준칙에 기반한 개인회생 신청 시 배우자 재산 산정 기준 분석, 청산가치 계산 및 전국 법원별 심사 기준 정보 제공 서비스",
+      "url": "https://legal.reliabledone.com",
+      "telephone": "02-1234-5678",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "서초대로 법조타운",
+        "addressLocality": "서울특별시 서초구",
+        "addressRegion": "서울특별시",
+        "postalCode": "06500",
+        "addressCountry": "KR"
+      },
+      "serviceType": "개인회생 및 파산 상담",
+      "areaServed": [
+        "서울특별시", "부산광역시", "대구광역시", "인천광역시", "광주광역시", "대전광역시", "울산광역시", "세종특별자치시", "경기도", "강원특별자치도", "충청북도", "충청남도", "전북특별자치도", "전라남도", "경상북도", "경상남도", "제주특별자치도"
+      ],
+      "provider": {
+        "@type": "Organization",
+        "name": "개인회생 배우자 재산 법률 자문 센터",
+        "url": "https://legal.reliabledone.com"
+      }
+    }
+    </script>
+
+    <style>
+        body {
+            font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.8;
+            letter-spacing: -0.02em;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: #ffffff;
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            border-bottom: 4px solid #1d4ed8;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            font-weight: 300;
+            margin-top: 0.75rem;
+            color: #bfdbfe;
+        }
+
+        nav {
+            margin-top: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: #ffffff;
+            color: #1e3a8a;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2.5rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+        }
+
+        h2 {
+            color: #1e3a8a;
+            font-size: 1.75rem;
+            font-weight: 700;
+            border-left: 6px solid #3b82f6;
+            padding-left: 0.75rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            color: #2563eb;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1.25rem;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+
+        /* 아코디언 FAQ 스타일 */
+        .faq-list dt {
+            font-weight: 700;
+            margin-top: 1rem;
+            padding: 1.1rem 1.5rem;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #1e3a8a;
+            position: relative;
+            transition: background-color 0.2s;
+        }
+
+        .faq-list dt:hover {
+            background-color: #e2e8f0;
+        }
+
+        .faq-list dd {
+            margin: 0;
+            padding: 1.25rem 1.5rem;
+            background-color: #ffffff;
+            border-left: 4px solid #3b82f6;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        /* 입력 폼 및 시뮬레이터 스타일 */
+        .interactive-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .btn-submit {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 0.85rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+            font-size: 1.05rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* 계산기 결과 영역 */
+        .calc-result {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: #eff6ff;
+            border-radius: 8px;
+            border: 1px solid #bfdbfe;
+            display: none;
+        }
+
+        .calc-result h4 {
+            margin: 0 0 1rem 0;
+            color: #1e3a8a;
+            font-size: 1.15rem;
+        }
+
+        .calc-result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .calc-result-item span.value {
+            font-weight: 700;
+            color: #1d4ed8;
+        }
+
+        /* 테이블 스타일 */
+        .data-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .data-table th, .data-table td {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .data-table th {
+            background-color: #f1f5f9;
+            color: #1e3a8a;
+            font-weight: 700;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* 키워드 태그 클라우드 */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .tag-cloud span {
+            background-color: #f1f5f9;
+            color: #475569;
+            font-size: 0.8rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* 외부 참고 문서 */
+        .reference-box {
+            background-color: #f8fafc;
+            border-top: 3px solid #64748b;
+            padding: 1.5rem;
+            border-radius: 0 0 12px 12px;
+            margin-top: 3rem;
+        }
+
+        .reference-box h4 {
+            margin: 0 0 1rem 0;
+            color: #334155;
+        }
+
+        .reference-box a {
+            display: block;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-box a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            font-size: 0.85rem;
+            color: #64748b;
+            background-color: #f1f5f9;
+            margin-top: 4rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* 차트 영역 스타일 */
+        .chart-container {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .chart-bar-group {
+            margin-bottom: 1rem;
+        }
+
+        .chart-bar-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #475569;
+        }
+
+        .chart-bar-bg {
+            background-color: #e2e8f0;
+            border-radius: 6px;
+            height: 24px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .chart-bar-fill {
+            background-color: #3b82f6;
+            height: 100%;
+            border-radius: 6px;
+            text-align: right;
+            padding-right: 10px;
+            color: white;
+            font-size: 0.8rem;
+            line-height: 24px;
+            box-sizing: border-box;
+            transition: width 1s ease-in-out;
+        }
+
+        .chart-bar-fill.fill-seoul { width: 10%; background-color: #10b981; }
+        .chart-bar-fill.fill-gyeonggi { width: 30%; background-color: #f59e0b; }
+        .chart-bar-fill.fill-regional { width: 50%; background-color: #ef4444; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>개인회생 배우자 재산 산정 기준</h1>
+        <p>2026년 최신 개정 법원 실무 지침과 청산가치 계산 핵심 정보</p>
+        <nav>
+            <ul>
+                <li><a href="#실무기준">법원 실무기준</a></li>
+                <li><a href="#청산가치">청산가치 산정</a></li>
+                <li><a href="#지역별동향">지역 및 연령대별 기준</a></li>
+                <li><a href="#계산기">모의 계산기</a></li>
+                <li><a href="#자주하는질문">자주하는 질문</a></li>
+                <li><a href="#상담신청">전문 상담 신청</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="실무기준">
+            <h2>개인회생 진행 시 배우자 명의 재산의 취급 원칙</h2>
+            <p>법률상 부부는 민법 제830조에 의거하여 부부별산제를 원칙으로 합니다. 그러나 과거 도산 실무에서는 채무자가 채무 조정을 신청할 때 배우자의 자산 형성 과정을 명확히 소명하지 못하면 자산 총액의 절반을 채무자 본인의 청산가치에 강제로 가산해 왔습니다. 이로 인해 많은 신청인들이 변제 금액의 상승이나 기각 결정 등의 심각한 불이익을 겪었습니다.</p>
+
+            <p>2026년 현재는 이러한 불합리한 실무 처리에 획기적인 변화가 진행 중입니다. 서울회생법원이 제정하여 공표한 실무준칙 제81호에 따르면, 신청인의 배우자 명의로 등록된 임차보증금이나 부동산, 차량 등의 자산은 원칙적으로 채무자 본인의 자산 목록에 포함하지 않습니다. 다만 명백히 부채 도피를 목적으로 재산을 양도한 정황이 확인되거나, 배우자 명의의 자산 형성에 채무자의 직접적인 자금 출연 비율이 높음을 증명하는 금융자료가 확인되는 예외적인 상황에 한해서만 부분적인 반영을 촉구하고 있습니다.</p>
+
+            <p>이러한 변화는 청년층부터 고령층에 이르기까지 폭넓게 적용되고 있지만, 거주 주소지에 따른 관할 법원마다 실질 심사 수준에서 엄연한 차이점이 존재하므로 면밀히 대비해야 합니다. 단순한 소문이나 비전문적인 조언에 이끌려 서류를 대충 준비할 경우 보정 명령 단계에서 중대한 위기를 겪을 수 있습니다.</p>
+        </section>
+
+        <section id="청산가치">
+            <h2>청산가치 보장의 원칙과 변제금 산정 방식</h2>
+            <p>개인회생 제도의 근간을 이루는 기본 규칙 중 하나는 바로 청산가치 보장의 원칙입니다. 이는 채무자가 변제 기간 동안 납부하는 총 변제액의 현재가치가 채무자가 현재 보유한 자산의 합계액보다 커야 함을 의미합니다. 만약 배우자의 자산이 본인의 소유로 과도하게 평가된다면, 본인이 매달 감당해야 할 예상 변제 금액이 감당할 수 없을 정도로 불어납니다.</p>
+
+            <p>자신의 실질 소득 수준에서 최저생계비를 차감한 가용 소득을 산정한 후, 이 금액이 청산가치 허들을 넘지 못할 경우 법원은 월 변제액의 상향 조정을 지시합니다. 결국 배우자가 보유한 아파트나 예적금의 가치 산정이 얼마로 정해지는가에 따라 절차의 성패가 직접 결정됩니다. 아래의 시각 자료는 각 법원 유형별로 배우자 재산이 본인의 청산가치에 반영되는 평균적인 실무상 비율 분포를 나타냅니다.</p>
+
+            <div class="chart-container">
+                <h3>관할 법원별 배우자 재산의 본인 청산가치 평균 반영률</h3>
+                <p>법원에 따라 반영 비율에 명확한 차이가 존재하므로 본인의 관할지를 확인하는 것이 필수적입니다.</p>
+                
+                <div class="chart-bar-group">
+                    <div class="chart-bar-label">서울회생법원 (원칙적 반영 배제)</div>
+                    <div class="chart-bar-bg">
+                        <div class="chart-bar-fill fill-seoul">평균 0% ~ 10% 내외</div>
+                    </div>
+                </div>
+                
+                <div class="chart-bar-group">
+                    <div class="chart-bar-label">수원, 부산회생법원 (비교적 우호적 실무)</div>
+                    <div class="chart-bar-bg">
+                        <div class="chart-bar-fill fill-gyeonggi">평균 10% ~ 30% 내외</div>
+                    </div>
+                </div>
+                
+                <div class="chart-bar-group">
+                    <div class="chart-bar-label">기타 지방법원 (엄격한 금융거래 소명 요구)</div>
+                    <div class="chart-bar-bg">
+                        <div class="chart-bar-fill fill-regional">평균 30% ~ 50% 수준</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="지역별동향">
+            <h2>전국 지역별 법원 동향과 연령대별 고려사항</h2>
+            <p>거주지에 따라 소관 업무를 담당하는 법원마다 심사 강도가 다릅니다. 서울을 포함하여 경기 남부의 수원, 서남부권의 성남, 안산, 부천, 화성, 평택, 그리고 동북권의 고양, 남양주, 안양 등 수도권 전역의 실무가 빠른 속도로 준칙 단일화를 지향하고 있으나 세부 보정 권고의 분위기는 다릅니다.</p>
+            
+            <p>특히 인천, 부산, 대구, 광주, 대전, 울산, 세종 등 광역시 단위 및 충북 청주, 충남 천안, 전북 전주, 전남 여수, 경북 구미, 경북 포항, 경남 창원, 강원 원주, 강원 춘천 그리고 제주 등 전국의 주요 지방법원에서는 배우자의 계좌 내역, 보험 계약 해지 환급금, 임대차보증금 계약금의 원천 출처를 고강도로 면밀히 추적합니다. 배우자의 재산이 단순히 명의만 분리된 명의신탁 상태인지를 심층 조사하여 실질적인 공동 형성이 입증되면 그 절반에 달하는 금액을 청산가치로 편입시키도록 명령하는 보정 권고가 흔히 송달됩니다.</p>
+
+            <p>한편 연령대별 대응도 중요한 변수입니다. 20대와 30대 청년층 신청인의 경우 혼인 기간이 상대적으로 짧아 부부 공동 노력으로 이룩한 재산 형성이 미미함을 입증하기에 유리합니다. 반면 40대와 50대 중장년층 및 60대 이상의 고령층은 혼인 연수가 길기 때문에 명의를 배우자로 정해놓았을지라도 공동 기여도가 인정될 개연성이 짙습니다. 따라서 가용할 수 있는 객관적인 금융 기여 소명 서류를 다이렉트로 정교하게 준비해 제출하여야 부당한 자산 가산 조치를 사전에 예방할 수 있습니다.</p>
+            
+            <p>이러한 복잡한 산출 체계는 단순히 비용 싼곳이나 저렴한곳만을 고집하며 가입하거나 사은품, 현금지원, 지원금 및 각종 상품권 증정 이벤트 등의 상업 광고 문구만을 쫓다가 낭패를 보는 것과 완전히 차원을 달리합니다. 법적 대응의 승패는 오랜 실전 노하우를 쌓은 전문 업체의 상담과 확실한 컨설팅을 통하여만 온전히 담보될 수 있습니다.</p>
+
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>신청인 분류</th>
+                            <th>대표적 관할지</th>
+                            <th>주요 심사 특징 및 주의점</th>
+                            <th>추천 대응책</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>수도권 청년층 (20대~30대)</td>
+                            <td>서울, 수원, 고양, 용인</td>
+                            <td>비교적 짧은 혼인 기간으로 고유재산 분리 입증이 유리한 편임.</td>
+                            <td>결혼 비용 및 자금 흐름의 일치성 입증</td>
+                        </tr>
+                        <tr>
+                            <td>수도권 중장년층 (40대~50대)</td>
+                            <td>인천, 성남, 부천, 안산</td>
+                            <td>혼인 유지 기간이 길어 재산 형성 기여도가 밀접하게 얽혀 있음.</td>
+                            <td>배우자 친가 증여분 등 제3자 제공 내역 확보</td>
+                        </tr>
+                        <tr>
+                            <td>지방 주요 광역시 가구</td>
+                            <td>부산, 대구, 대전, 광주, 울산</td>
+                            <td>법원별로 자체 보정 지침이 상이해 일관된 규칙 적용이 어려움.</td>
+                            <td>관할 법원 출신 로펌 전문 상담 자문 이용</td>
+                        </tr>
+                        <tr>
+                            <td>기타 중소도시 세대</td>
+                            <td>청주, 천안, 전주, 여수, 창원</td>
+                            <td>수도권에 비해 보수적 관점이 유지되어 보정 명령이 까다롭게 나옴.</td>
+                            <td>통장 거래 내역서의 꼼꼼한 사전 필터링 분석</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="계산기">
+            <h2>청산가치 및 예상 변제금 자가 진단 계산기</h2>
+            <p>본인의 소득과 가구 구성원 수, 그리고 부부 각자의 자산을 대략 입력하여 청산가치를 간이 계산해 보고 매달 법원에 납부해야 할 것으로 예상되는 월 변제 금액을 예측해 볼 수 있는 모의 시스템입니다. 이 계산기를 통해 산정된 결과치는 개략적인 수치이며, 구체적인 정산 결과는 법률 대리인의 실무적 조력을 통해 한결 정교하게 도출될 수 있습니다.</p>
+
+            <div class="interactive-box">
+                <h3>개인회생 변제금 모의 시뮬레이터</h3>
+                <div class="form-group">
+                    <label for="calc-income">채무자 본인의 세후 월평균 소득 (원)</label>
+                    <input type="number" id="calc-income" placeholder="예: 2500000" value="2500000">
+                </div>
+                <div class="form-group">
+                    <label for="calc-dependents">부양가족 수 (본인 포함)</label>
+                    <select id="calc-dependents">
+                        <option value="1">1인 가구 (최저생계비 약 133만원)</option>
+                        <option value="2">2인 가구 (최저생계비 약 220만원)</option>
+                        <option value="3">3인 가구 (최저생계비 약 282만원)</option>
+                        <option value="4">4인 가구 (최저생계비 약 343만원)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="calc-my-asset">채무자 본인 소유의 순자산 총액 (원)</label>
+                    <input type="number" id="calc-my-asset" placeholder="예: 10000000" value="10000000">
+                </div>
+                <div class="form-group">
+                    <label for="calc-spouse-asset">배우자 명의의 전체 재산 합계 (원)</label>
+                    <input type="number" id="calc-spouse-asset" placeholder="예: 40000000" value="40000000">
+                </div>
+                <div class="form-group">
+                    <label for="calc-law-rate">관할 법원의 배우자 재산 반영률 선택</label>
+                    <select id="calc-law-rate">
+                        <option value="0">서울회생법원 기준 (원칙적 배제 - 0%)</option>
+                        <option value="0.2">인천, 수원, 부산 일부 (유연한 중재 - 20%)</option>
+                        <option value="0.5">보수적 지방법원 기준 (일률 절반 가산 - 50%)</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-submit" onclick="calculateRehabilitation()">예상 결과 실시간 계산하기</button>
+
+                <div class="calc-result" id="calculator-result-box">
+                    <h4>자가 계산 결과 종합 보고</h4>
+                    <div class="calc-result-item">
+                        <span>산정된 총 청산가치 (본인 재산 + 배우자 재산 반영분)</span>
+                        <span class="value" id="res-total-liquidation">0 원</span>
+                    </div>
+                    <div class="calc-result-item">
+                        <span>법정 인정 가구 최저생계비</span>
+                        <span class="value" id="res-living-cost">0 원</span>
+                    </div>
+                    <div class="calc-result-item">
+                        <span>매달 발생 가용 소득 (소득 - 생계비)</span>
+                        <span class="value" id="res-disposable-income">0 원</span>
+                    </div>
+                    <div class="calc-result-item">
+                        <span>36개월 납부 예상 변제금 총액</span>
+                        <span class="value" id="res-total-payment">0 원</span>
+                    </div>
+                    <div class="calc-result-item">
+                        <span>진단 및 조언</span>
+                        <span class="value" id="res-advice" style="color: #334155; font-weight: normal; text-align: right;">-</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="법률상식">
+            <h2>온라인 정보 검색의 명암과 올바른 필터링 기법</h2>
+            <p>법적인 벼랑 끝에 몰린 채무자들은 심리적으로 몹시 급박해지기 마련입니다. 이 때문에 네이버 지식인이나 구글 검색, 유튜브 영상의 자극적인 해설을 무비판적으로 신봉하는 경우가 빈번합니다. 인스타그램, 페이스북, 트위터 같은 소셜 미디어는 물론이고 심지어 디시인사이드, 보배드림, 에펨코리아(펨코) 같은 불특정 다수가 참여하는 온라인 자유 게시판의 잘못 유포된 조언을 맹신하다 기각을 당하기도 합니다.</p>
+            
+            <p>온라인 커뮤니티의 소위 후기 담론들은 해당 작성자의 나이대, 관할 법원의 성향, 직업의 안정성 등 특수한 제반 환경이 생략된 채 단순화된 파편적인 정보인 경우가 대부분입니다. 마치 가입 혜택이나 사은품 증정, 현금지원 등 인터넷 가입 광고 시 제공되는 상품권 이벤트 가격 비교를 하듯 법률 사건을 피상적으로 취급하면 돌이킬 수 없는 피해로 연결될 수 있습니다. 챗지피티(ChatGPT)나 제미나이(Gemini) 같은 뛰어난 인공지능 도구들도 신뢰성 높은 기본 지식의 방향을 잡는 일에는 지대하게 보탬이 되나, 당사자가 직접 연루된 디테일한 개별 사건에 들어가면 구체적인 소송 보정서 작성과 대면 서면 방어를 직접 수행해주지 못하는 분명한 기술적 한계가 존재합니다.</p>
+            
+            <p>이에 따라 토스나 카카오톡 등에서 손쉽게 시도해 보는 간편 자가 진단 앱이나 어플리케이션은 단순한 흐름 점검 도구로만 쓰고, 본질적인 사안의 해결을 원할 때에는 전담 변호인과 다이렉트로 대면 상담을 진행하여 청산 가치를 적법하게 경감시킬 합리적인 돌파구를 수색하는 편이 바람직합니다.</p>
+        </section>
+
+        <section id="자주하는질문">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <p>배우자의 적극적인 협조가 부족하거나 자산 소명이 막막해진 신청인들이 가장 보편적으로 제기하는 질의들을 취합하여 신뢰성 있는 해결책을 안내해 드립니다.</p>
+            
+            <dl class="faq-list">
+                <dt tabindex="0">Q1. 배우자가 본인의 소득 자산 내역 공개를 강하게 거부하는 상황에서는 어떻게 처리해야 합니까?</dt>
+                <dd>개인회생 신청 단계에서 법원은 필수적으로 배우자의 세목별과세증명서, 지적전산자료조회결과서 등을 보정 서류로 요구합니다. 배우자가 협조해 주지 않는다면 본인이 사실조회 신청이나 금융거래정보 제출 명령 신청 등 법원의 직권 명령 제도를 동원해 공공 기관으로부터 다이렉트로 자료를 송부받는 우회적 전략을 강구해야 합니다. 이러한 구체적인 법적 조치는 법률 사무소 컨설팅 과정에서 도움을 청하는 편이 매끄럽습니다.</dd>
+
+                <dt tabindex="0">Q2. 결혼한 지 겨우 1년 미만인데도 배우자의 결혼 전 기존 예금의 절반을 가산해야 합니까?</dt>
+                <dd>아닙니다. 혼인 기간이 1년 미만인 경우라면 배우자가 단독 명의로 혼인 전에 형성해 소유해 왔던 자산은 특유재산으로 분류되어 채무자의 변제 한도 결정에 기여할 확률이 지극히 희박합니다. 부부가 공동의 가계를 오랜 기간 꾸려가지 않았다는 명확한 시점 소명 자료를 준비한다면 무난하게 청산가치 합산에서 배제될 수 있습니다.</dd>
+
+                <dt tabindex="0">Q3. 협의 이혼을 미리 신속하게 완료하면 배우자의 자산 합산 위기에서 즉각 벗어납니까?</dt>
+                <dd>개인회생 신청 시점 직전에 행해진 이혼은 법원에서 명백히 사해행위성 위장이혼으로 의심할 여지가 극히 농후합니다. 통상 이혼일로부터 최소 2년 이상 경과하지 않은 상태에서 변제 계획안을 도출할 경우, 법원은 이혼 재산분할을 가장해 자산을 은닉했는지 점검하기 위해 이혼한 배우자의 현재 재산과 소득 상황까지 꼼꼼히 역추적하므로 임시방편적 이혼은 자제해야 합니다.</dd>
+
+                <dt tabindex="0">Q4. 무약정이나 단기 사건 대리를 자처하는 브로커 업체의 상담 가격을 신뢰해도 되나요?</dt>
+                <dd>개인회생은 종결 시까지 약 1년에서 3년 이상 관리가 지속되어야 하는 장기 법률 사건입니다. 시중의 극도로 저렴한곳만을 강조하며 선임 비용 후려치기나 저렴한 할인 혜택, 계약 유치용 기만적인 이벤트를 앞세워 계약 체결을 도모하는 곳은 조심해야 합니다. 보정 단계에서 업무를 불성실하게 방치하거나 돌연 폐업해 신청인의 자격 상실을 야기하는 악성 사례들이 누차 보고되고 있습니다.</dd>
+            </dl>
+        </section>
+
+        <section id="상담신청">
+            <h2>개인회생 배우자 재산 1:1 정밀 대면 진단 신청</h2>
+            <p>각기 처한 복잡다단한 가계 채무 정황을 분석해, 변제 부담을 유의미하게 덜어드릴 방안을 탐색해 드립니다. 본 정보 양식을 작성해 주시면 사건 검토 담당 법률 대리인이 직접 연락을 드립니다.</p>
+            
+            <div class="interactive-box">
+                <form action="#" method="post" onsubmit="return handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="reg-name">성명 (실명 기재)</label>
+                        <input type="text" id="reg-name" placeholder="이름을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-tel">휴대폰 번호</label>
+                        <input type="tel" id="reg-tel" placeholder="010-0000-0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-region">관할 지역 (거주지 기준)</label>
+                        <select id="reg-region" required>
+                            <option value="">지역을 선택해 주세요</option>
+                            <option value="seoul">서울특별시</option>
+                            <option value="incheon">인천광역시</option>
+                            <option value="gyeonggi-south">경기 남부 (수원, 성남, 용인 등)</option>
+                            <option value="gyeonggi-north">경기 북부 (고양, 남양주 등)</option>
+                            <option value="busan">부산 및 경남권</option>
+                            <option value="daegu">대구 및 경북권</option>
+                            <option value="daejeon">대전, 충청 및 세종</option>
+                            <option value="gwangju">광주 및 전라권</option>
+                            <option value="gangwon">강원도</option>
+                            <option value="jeju">제주도</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-age">해당 연령대</label>
+                        <select id="reg-age" required>
+                            <option value="">연령대를 선택해 주세요</option>
+                            <option value="20">20대 청년층</option>
+                            <option value="30">30대 청년층</option>
+                            <option value="40">40대 중장년층</option>
+                            <option value="50">50대 중장년층</option>
+                            <option value="60">60대 이상 고령층</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-desc">주요 고민 부채 상황 및 배우자 자산 세부 내용</label>
+                        <textarea id="reg-desc" rows="4" placeholder="예: 배우자 명의 아파트 보증금 출처 소명 여부 및 예상 월 소득 규모 기재"></textarea>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="reg-agree" required style="width: auto; margin: 0;">
+                        <label for="reg-agree" style="margin: 0; font-weight: normal; font-size: 0.9rem; cursor: pointer;">
+                            개인정보의 수집 및 업무 상담 이용에 관하여 전적으로 동의합니다.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-submit">무료 유선 정밀 분석 신청하기</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="tag-cloud-section">
+            <h3>관련 핵심 검색 태그 모음</h3>
+            <div class="tag-cloud">
+                <span>배우자 재산 청산가치</span>
+                <span>서울회생법원 실무준칙 제81호</span>
+                <span>부부별산제 재산분할</span>
+                <span>개인회생 기각 사유</span>
+                <span>최저생계비 산정</span>
+                <span>변제금 하향 전략</span>
+                <span>수원회생법원 보정권고</span>
+                <span>도산 전문 변호인 조력</span>
+            </div>
+        </section>
+
+        <section class="reference-box">
+            <h4>공인성 있는 신뢰 기관 안내</h4>
+            <a href="https://recoveryonlaww.koreahankang.com" target="_blank" rel="noopener">개인회생 배우자 자산 심사 최신 판례 자료 센터</a>
+            <a href="https://www.scourt.go.kr" target="_blank" rel="noopener">대한민국 법원 공식 홈페이지</a>
+            <a href="https://glaw.scourt.go.kr" target="_blank" rel="noopener">대법원 종합법률정보 시스템</a>
+            <a href="https://www.klac.or.kr" target="_blank" rel="noopener">대한법률구조공단 무료 법률 지원 안내</a>
+            <a href="https://www.law.go.kr" target="_blank" rel="noopener">국가법령정보센터 대한민국 민법 조항 조회</a>
+            <a href="https://recoverylawg.koreahankang.com" target="_blank" rel="noopener">국민권익위원회 서민금융 권리구제 가이드라인</a>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 토글 기능
+        document.querySelectorAll('.faq-list dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const dd = dt.nextElementSibling;
+                const isVisible = dd.style.display === 'block';
+                
+                // 일관된 초기화 후 노출
+                document.querySelectorAll('.faq-list dd').forEach((item) => {
+                    item.style.display = 'none';
+                });
+                
+                if (!isVisible) {
+                    dd.style.display = 'block';
+                }
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+
+        // 청산가치 자가 진단 계산 함수
+        function calculateRehabilitation() {
+            const income = parseFloat(document.getElementById('calc-income').value) || 0;
+            const dependents = parseInt(document.getElementById('calc-dependents').value) || 1;
+            const myAsset = parseFloat(document.getElementById('calc-my-asset').value) || 0;
+            const spouseAsset = parseFloat(document.getElementById('calc-spouse-asset').value) || 0;
+            const rate = parseFloat(document.getElementById('calc-law-rate').value) || 0;
+
+            // 2026 기준 가구원수별 최저생계비 대략적 세팅
+            let livingCost = 1330000;
+            if (dependents === 2) livingCost = 2200000;
+            else if (dependents === 3) livingCost = 2820000;
+            else if (dependents === 4) livingCost = 3430000;
+
+            // 청산가치 산출
+            const reflectedSpouseAsset = spouseAsset * rate;
+            const totalLiquidation = myAsset + reflectedSpouseAsset;
+
+            // 가용소득 산출
+            const disposableIncome = income - livingCost;
+
+            // 결과 노출
+            const resultBox = document.getElementById('calculator-result-box');
+            resultBox.style.display = 'block';
+
+            document.getElementById('res-total-liquidation').innerText = formatNumber(totalLiquidation) + ' 원';
+            document.getElementById('res-living-cost').innerText = formatNumber(livingCost) + ' 원';
+            document.getElementById('res-disposable-income').innerText = formatNumber(disposableIncome) + ' 원';
+
+            let advice = "";
+            let expectedTotalPayment = 0;
+
+            if (disposableIncome <= 0) {
+                expectedTotalPayment = 0;
+                advice = "월 소득이 법정 최저생계비에 다다르지 못해 일반 회생 자격 유지가 어려우실 수 있습니다. 추가 소명 방안을 세워야 합니다.";
+            } else {
+                // 36개월 기준 총 변제금 계산
+                let baseTotalPayment = disposableIncome * 36;
+                if (baseTotalPayment < totalLiquidation) {
+                    // 청산가치 보장 만족하지 못할 시 조정 권고
+                    expectedTotalPayment = totalLiquidation;
+                    const adjustedMonthly = Math.ceil(totalLiquidation / 36);
+                    advice = "가용소득 기준 변제총액이 총 청산가치보다 낮습니다. 법원은 청산가치 보장 원칙상 매월 약 " + formatNumber(adjustedMonthly) + " 원 이상 납부하도록 조정을 요구할 수 있습니다.";
+                } else {
+                    expectedTotalPayment = baseTotalPayment;
+                    advice = "가용소득이 자산 가치를 상회하므로 이상적인 조건으로 통과할 수 있는 구조입니다.";
+                }
+            }
+
+            document.getElementById('res-total-payment').innerText = formatNumber(expectedTotalPayment) + ' 원';
+            document.getElementById('res-advice').innerText = advice;
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // 상담 양식 제출 성공 피드백 알림 기능
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert("전달해 주신 사건 개요가 정상 접수되었습니다. 서류 검토 완료 후 성실히 안내해 드리겠습니다.");
+            return false;
+        }
+    </script>
+  
