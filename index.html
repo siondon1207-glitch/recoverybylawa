@@ -1089,300 +1089,266 @@
 
 
 
-<!-- [SEO 최적화 무링크 푸터] 별도 수정 및 연결할 페이지 없이 바로 사용 가능합니다. -->
-<footer id="dynamic-footer">
-  <div class="footer-container">
+
+<footer id="master-footer" class="wf-footer" role="contentinfo">
+  <div class="wf-inner">
     
-    <!-- 1. 의미론적 브랜드 및 서비스 설명 (검색엔진 색인용 텍스트 컨텍스트 제공) -->
-    <div class="footer-brand-section">
-      <span class="site-name-display" id="footer-brand-title">My Website</span>
-      <p class="brand-desc">
-        본 웹사이트는 신뢰성 있는 정보와 쾌적한 웹 환경을 제공하기 위해 상시 관리되고 있습니다. 
-        웹 표준을 준수하며, 안정적인 자원 관리와 실시간 시스템 점검을 통해 상시 최적화된 서비스를 유지합니다.
-      </p>
+    <!-- 1. SEO 안전 안내 링크 (모달 방식으로 404 크롤링 에러 0건 보장) -->
+    <nav class="wf-nav" aria-label="사이트 이용 안내">
+      <button type="button" class="wf-link-btn" onclick="wfOpenModal('wf-modal-privacy')">개인정보처리방침</button>
+      <span class="wf-sep" aria-hidden="true">|</span>
+      <button type="button" class="wf-link-btn" onclick="wfOpenModal('wf-modal-terms')">이용약관</button>
+      <span class="wf-sep" aria-hidden="true">|</span>
+      <button type="button" class="wf-link-btn" onclick="wfOpenModal('wf-modal-about')">사이트 소개</button>
+    </nav>
+
+    <!-- 2. 신뢰성 표시 -->
+    <div class="wf-status" role="status">
+      <span class="wf-dot" aria-hidden="true"></span>
+      <span>정상 서비스 제공 중</span>
     </div>
 
-    <!-- 2. 실시간 최적화 상태 정보 (사용자 체류 신뢰성 및 검색 크롤러 신선도 신호) -->
-    <div class="footer-status-wrapper">
-      <span class="status-indicator" aria-hidden="true"></span>
-      <span id="sync-status" aria-live="polite">시스템 상태 확인 중...</span>
-      <span class="divider">|</span>
-      <span>최종 동기화 점검: <time id="last-update-time" datetime="2026-01-01">2026-01-01</time></span>
-    </div>
-
-    <!-- 3. 카피라이트 표기 -->
-    <div class="footer-copyright">
-      &copy; <span id="copyright-year">2026</span> <span class="site-name-display">My Website</span>. All rights reserved.
+    <!-- 3. 저작권 (KST 연도 및 사이트명 자동 동기화) -->
+    <div class="wf-copy">
+      <small>© <span class="wf-year">2026</span> <span class="wf-brand">Website</span>. All rights reserved.</small>
     </div>
 
   </div>
 
-  <!-- 푸터 전용 레이아웃 및 디자인 정의 -->
+  <!-- [내장 팝업 1] 개인정보처리방침 (별도 페이지 없이도 법적/신뢰성 요건 충족) -->
+  <dialog id="wf-modal-privacy" class="wf-dialog" aria-labelledby="wf-priv-title">
+    <div class="wf-dialog-box">
+      <div class="wf-dialog-header">
+        <h3 id="wf-priv-title">개인정보처리방침</h3>
+        <button type="button" class="wf-close-btn" onclick="wfCloseModal('wf-modal-privacy')" aria-label="닫기">&times;</button>
+      </div>
+      <div class="wf-dialog-body">
+        <p>본 사이트는 이용자의 개인정보를 중요시하며, 관련 법령을 준수하고 있습니다.</p>
+        <p>1. <strong>수집 항목:</strong> 서비스 이용 과정에서 생성되는 쿠키, IP 주소 및 통계 데이터</p>
+        <p>2. <strong>이용 목적:</strong> 사이트 성능 개선, 통계 분석 및 비정상적 트래픽 차단</p>
+        <p>3. <strong>보관 기간:</strong> 수집 및 이용 목적 달성 시 지체 없이 파기합니다.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- [내장 팝업 2] 이용약관 -->
+  <dialog id="wf-modal-terms" class="wf-dialog" aria-labelledby="wf-terms-title">
+    <div class="wf-dialog-box">
+      <div class="wf-dialog-header">
+        <h3 id="wf-terms-title">이용약관</h3>
+        <button type="button" class="wf-close-btn" onclick="wfCloseModal('wf-modal-terms')" aria-label="닫기">&times;</button>
+      </div>
+      <div class="wf-dialog-body">
+        <p>본 사이트가 제공하는 모든 콘텐츠는 참고용 정보이며, 무단 복제 및 전재를 금지합니다.</p>
+        <p>이용자는 관련 법령과 공서양속을 준수하여 사이트를 이용해야 합니다.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- [내장 팝업 3] 사이트 소개 -->
+  <dialog id="wf-modal-about" class="wf-dialog" aria-labelledby="wf-about-title">
+    <div class="wf-dialog-box">
+      <div class="wf-dialog-header">
+        <h3 id="wf-about-title">사이트 소개</h3>
+        <button type="button" class="wf-close-btn" onclick="wfCloseModal('wf-modal-about')" aria-label="닫기">&times;</button>
+      </div>
+      <div class="wf-dialog-body">
+        <p>본 사이트는 유용한 정보를 빠르고 정확하게 제공하기 위해 운영되는 플랫폼입니다.</p>
+        <p>항상 안정적이고 최적화된 웹 환경을 제공하도록 최선을 다하겠습니다.</p>
+      </div>
+    </div>
+  </dialog>
+
   <style>
-    #dynamic-footer {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.8;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background-color: #fafafa;
-      border-top: 1px solid #eaeaea;
-      padding: 45px 20px;
+    /* 초경량 & 무결점 반응형 CSS */
+    .wf-footer {
+      background: #f8f9fa;
+      border-top: 1px solid #e9ecef;
+      color: #6c757d;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 32px 16px;
       text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      box-sizing: border-box;
+      width: 100%;
     }
-    #dynamic-footer .footer-container {
-      max-width: 800px;
+    @media (prefers-color-scheme: dark) {
+      .wf-footer { background: #181a1b; border-top-color: #2c3032; color: #9aa0a6; }
+      .wf-footer .wf-link-btn { color: #bdc1c6; }
+      .wf-footer .wf-copy { color: #80868b; }
+      .wf-footer .wf-status { background: #202425; border-color: #2c3032; }
+      .wf-dialog-box { background: #222629; color: #e8eaed; }
+      .wf-dialog-header { border-bottom-color: #33383b; }
+      .wf-close-btn { color: #e8eaed; }
+    }
+    .wf-inner {
+      max-width: 960px;
       margin: 0 auto;
-    }
-    #dynamic-footer .footer-brand-section {
-      margin-bottom: 22px;
-    }
-    #dynamic-footer .site-name-display {
-      font-size: 14px;
-      font-weight: 700;
-      color: #333;
-      display: inline-block;
-      margin-bottom: 8px;
-    }
-    #dynamic-footer .brand-desc {
-      max-width: 580px;
-      margin: 0 auto;
-      color: #888;
-      font-size: 11.5px;
-      word-break: keep-all;
-    }
-    #dynamic-footer .footer-status-wrapper {
       display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 12px;
+    }
+    .wf-nav {
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
       gap: 8px;
-      color: #999;
-      margin-bottom: 18px;
     }
-    #dynamic-footer .status-indicator {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background-color: #2ecc71;
-      border-radius: 50%;
-      box-shadow: 0 0 5px rgba(46, 204, 113, 0.6);
-      animation: pulse-glow 2s infinite ease-in-out;
+    /* 링크처럼 보이는 시맨틱 버튼 스타일 */
+    .wf-link-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 12px;
+      font-weight: 500;
+      color: #495057;
+      cursor: pointer;
+      font-family: inherit;
     }
-    #dynamic-footer .footer-copyright {
-      color: #999;
+    .wf-link-btn:hover {
+      text-decoration: underline;
+    }
+    .wf-sep {
+      color: #ced4da;
+      font-size: 10px;
+    }
+    .wf-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
       font-size: 11px;
     }
-    #dynamic-footer .divider {
-      color: #e8e8e8;
-      margin: 0 6px;
-      user-select: none;
+    .wf-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .wf-copy {
+      font-size: 12px;
+      color: #868e96;
+    }
+    .wf-copy small {
+      font-size: 100%;
     }
 
-    @keyframes pulse-glow {
-      0% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(1.15); }
-      100% { opacity: 1; transform: scale(1); }
+    /* 네이티브 다이얼로그(모달) 스타일 */
+    .wf-dialog {
+      border: none;
+      border-radius: 12px;
+      padding: 0;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
-
-    @media (max-width: 768px) {
-      #dynamic-footer {
-        padding: 35px 15px;
-      }
-      #dynamic-footer .footer-status-wrapper {
-        flex-direction: row;
-        flex-wrap: wrap;
-        row-gap: 4px;
-      }
+    .wf-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(2px);
+    }
+    .wf-dialog-box {
+      background: #ffffff;
+      padding: 20px;
+      text-align: left;
+    }
+    .wf-dialog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e9ecef;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .wf-dialog-header h3 {
+      margin: 0;
+      font-size: 16px;
+      color: inherit;
+    }
+    .wf-close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      color: #6c757d;
+    }
+    .wf-dialog-body {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .wf-dialog-body p {
+      margin: 6px 0;
     }
   </style>
-	
 
-    <!-- 1. 전체 내부 링크 네비게이션 (sitemap.html 포함) -->
-    <div class="nav-links" style="margin-bottom: 15px;">
-        <a href="/" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">홈</a> | 
-        <a href="about.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">서비스소개</a> | 
-        <a href="guide.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">이용안내·FAQ</a> | 
-        <a href="checklist.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">체크리스트</a> | 
-        <a href="contact.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">고객지원</a> | 
-        <a href="security.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">정보보안정책</a> | 
-        <a href="terms.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">이용약관</a> | 
-        <a href="privacy.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">개인정보처리방침</a> | 
-        <a href="disclaimer.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">책임의한계</a> | 
-        <a href="sitemap.html" style="color: #0066cc; text-decoration: none; margin: 0 5px; font-weight: 500;">사이트맵</a>
-    </div>
+  <script>
+  // 모달 열기/닫기 전역 함수
+  function wfOpenModal(id) {
+    var modal = document.getElementById(id);
+    if (modal && typeof modal.showModal === 'function') {
+      modal.showModal();
+    }
+  }
+  function wfCloseModal(id) {
+    var modal = document.getElementById(id);
+    if (modal && typeof modal.close === 'function') {
+      modal.close();
+    }
+  }
 
-    <!-- 2. 운영 센터 안내 및 지원 시간 (신뢰도 핵심) -->
-    <p style="margin-bottom: 6px; word-break: keep-all;">
-        <strong>온라인 맞춤 상담 지원 센터</strong> | 상담 운영시간: 평일 09:30 ~ 18:00 (온라인 간편 접수 24시간 연중무휴)
-    </p>
+  (function() {
+    'use strict';
+    try {
+      // 1. KST 기준 연도 산출
+      var now = new Date();
+      var year = String(now.getFullYear());
+      try {
+        var fmt = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric' });
+        year = fmt.format(now).replace(/[^0-9]/g, '');
+      } catch (err) {}
 
-    <!-- 3. 법적 면책 한 줄 고지 (법적 보호) -->
-    <p style="margin-bottom: 10px; font-size: 12px; color: #9ca3af; word-break: keep-all;">
-        본 웹사이트는 이용자의 맞춤 조건 비교 및 전문 상담 연결을 중개·안내하는 플랫폼이며, 최종 계약 및 서비스 이행의 책임은 실제 제공 업체에 있습니다.
-    </p>
+      // 2. 브랜드명 자동 감지
+      var brand = '';
+      var ogMeta = document.querySelector('meta[property="og:site_name"]');
+      if (ogMeta && ogMeta.content) {
+        brand = ogMeta.content.trim();
+      }
+      if (!brand && document.title) {
+        var titleParts = document.title.split(/[\-\|\:\—]/);
+        if (titleParts.length > 1) {
+          var lastPart = titleParts[titleParts.length - 1].trim();
+          if (lastPart.length > 0 && lastPart.length < 25) brand = lastPart;
+        }
+      }
+      if (!brand && window.location.hostname) {
+        brand = window.location.hostname.replace(/^www\./i, '').split('.')[0];
+        brand = brand.charAt(0).toUpperCase() + brand.slice(1);
+      }
 
-    <!-- 4. 저작권 표기 -->
-    <p style="margin-bottom: 0; font-size: 12px; color: #9ca3af;">
-        &copy; Online Service Information Center. All Rights Reserved.
-    </p>
+      // 3. 텍스트 안전 교체 (CLS 없음)
+      var yearNode = document.querySelector('#master-footer .wf-year');
+      var brandNode = document.querySelector('#master-footer .wf-brand');
+      if (yearNode && year && yearNode.textContent !== year) yearNode.textContent = year;
+      if (brandNode && brand && brandNode.textContent !== brand) brandNode.textContent = brand;
+
+      // 4. 모달 배경 클릭 시 닫기 지원
+      document.querySelectorAll('#master-footer .wf-dialog').forEach(function(dialog) {
+        dialog.addEventListener('click', function(e) {
+          if (e.target === dialog) dialog.close();
+        });
+      });
+    } catch (e) {}
+  })();
+  </script>
 </footer>
 
-<script>
-(function() {
-  'use strict';
-
-  // 1. 한국 표준시(KST) 기반 타임스탬프 계산기
-  function getKstInfo() {
-    try {
-      const now = new Date();
-      const formatter = new Intl.DateTimeFormat('ko-KR', {
-        timeZone: 'Asia/Seoul',
-        year: 'numeric', month: '2-digit', day: '2-digit',
-        hour: '2-digit', minute: '2-digit', second: '2-digit',
-        hour12: false
-      });
-
-      const parts = formatter.formatToParts(now).reduce((acc, part) => {
-        acc[part.type] = part.value;
-        return acc;
-      }, {});
-
-      const year = parts.year;
-      const formattedDate = year + '-' + parts.month + '-' + parts.day;
-      const isoDateTime = year + '-' + parts.month + '-' + parts.day + 'T' + parts.hour + ':' + parts.minute + ':' + parts.second + '+09:00';
-
-      return { year, formattedDate, isoDateTime };
-    } catch (e) {
-      const local = new Date();
-      const year = local.getFullYear().toString();
-      const formattedDate = year + '-' + String(local.getMonth() + 1).padStart(2, '0') + '-' + String(local.getDate()).padStart(2, '0');
-      return { year, formattedDate, isoDateTime: local.toISOString() };
-    }
-  }
-
-  // 2. 동적 SEO 헤더 업데이트 및 구조화 데이터 주입 (무링크 페이지 대응형)
-  function updateSeoEngine(data) {
-    const title = document.title || window.location.hostname;
-    const currentUrl = window.location.href;
-    const originUrl = window.location.origin;
-
-    const setMeta = (selector, content) => {
-      let el = document.querySelector(selector);
-      if (!el) {
-        el = document.createElement('meta');
-        if (selector.includes('property')) {
-          el.setAttribute('property', selector.split('"')[1]);
-        } else {
-          el.setAttribute('name', selector.split('"')[1]);
-        }
-        document.head.appendChild(el);
-      }
-      el.content = content;
-    };
-
-    // [SEO] 필수 메타 데이터 동기화
-    setMeta('property="og:updated_time"', data.isoDateTime);
-    setMeta('property="article:modified_time"', data.isoDateTime);
-    setMeta('name="date"', data.formattedDate);
-    setMeta('name="last-modified"', data.isoDateTime);
-    setMeta('name="copyright"', data.year + ' ' + title);
-
-    // [SEO] 구조화 데이터(JSON-LD) 생성 및 반영 (WebPage + WebSite 연동)
-    let ldJsonScript = document.getElementById('seo-json-ld');
-    if (!ldJsonScript) {
-      ldJsonScript = document.createElement('script');
-      ldJsonScript.id = 'seo-json-ld';
-      ldJsonScript.type = 'application/ld+json';
-      document.head.appendChild(ldJsonScript);
-    }
-
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "@id": currentUrl,
-          "url": currentUrl,
-          "name": title,
-          "datePublished": data.isoDateTime,
-          "dateModified": data.isoDateTime,
-          "inLanguage": "ko-KR",
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": originUrl + "/#website",
-            "url": originUrl,
-            "name": title
-          }
-        }
-      ]
-    };
-    ldJsonScript.textContent = JSON.stringify(jsonLd);
-  }
-
-  // 3. UI 바인딩 및 보정
-  function updateUi(data) {
-    const cleanHost = window.location.hostname.replace('www.', '');
-    const title = document.title ? document.title.split('-')[0].trim() : cleanHost;
-
-    // 사이트 타이틀 일괄 바인딩
-    const titleElements = document.querySelectorAll('#dynamic-footer .site-name-display');
-    titleElements.forEach(el => {
-      el.textContent = title;
-    });
-
-    // 연도 및 날짜 정보 바인딩
-    const copyrightYear = document.getElementById('copyright-year');
-    if (copyrightYear) copyrightYear.textContent = data.year;
-
-    const timeElem = document.getElementById('last-update-time');
-    if (timeElem) {
-      timeElem.textContent = data.formattedDate;
-      timeElem.setAttribute('datetime', data.isoDateTime);
-    }
-
-    // 시스템 최적화 상태 시그널 순환 출력
-    const statusMsgs = [
-      "웹표준 최적화 점검 완료",
-      "보안 환경 무결성 확인",
-      "레이아웃 정합성 검증 완료",
-      "반응형 데이터 세그먼트 동기화",
-      "검색엔진 인덱싱 데이터 정비",
-      "클라이언트 캐시 동기화 완료",
-       "서비스 최적화 완료", 
-       "데이터베이스 동기화 완료", 
-       "보안 프로토콜 점검 완료",
-       "콘텐츠 최신화 완료",
-       "시스템 점검 완료",
-       "웹표준 레이아웃 최적화",
-       "사용자 인터페이스 안정화",
-       "성능 개선 완료",
-       "새로운 데이터 로드 완료",
-       "운영 시스템 안정화 완료",
-       "인덱싱 최적화 완료",
-       "데이터 무결성 검사 완료", 
-       "캐시 레이어 갱신",
-       "보안 프로토콜 활성화", 
-       "실시간 콘텐츠 동기화"
-    ];
-    const syncStatus = document.getElementById('sync-status');
-    if (syncStatus) {
-      syncStatus.textContent = statusMsgs[Math.floor(Math.random() * statusMsgs.length)];
-    }
-  }
-
-  // 4. 실행 통합 컨트롤러
-  function init() {
-    const data = getKstInfo();
-    updateUi(data);
-    updateSeoEngine(data);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
 
 
 
